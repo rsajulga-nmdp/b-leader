@@ -1,0 +1,53 @@
+<!--
+-- Copyright (c) 2021 Be The Match.
+--
+-- This file is part of BLEAT 
+-- (see https://github.com/nmdp-bioinformatics/b-leader).
+--
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU Lesser General Public License as published by
+-- the Free Software Foundation, either version 3 of the License, or
+-- (at your option) any later version.
+--
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU Lesser General Public License for more details.
+--
+-- You should have received a copy of the GNU Lesser General Public License
+-- along with this program. If not, see <http://www.gnu.org/licenses/>.
+-->
+<h4
+[ngClass]="{disabled : subjects[0].allotypes[0].leader == ''}">
+Donor Selection Order Guidelines</h4>
+<div *ngIf="subjects[0].allotypes[0].leader == ''"
+    class="instructions"
+    [ngClass]="{disabled : subjects[0].allotypes[0].leader == ''}">
+    Guidelines are based on the patient's leader tissue type. 
+    Enter the patient's <i>HLA-B</i> alleles above.
+</div>
+<div *ngIf="['MM', 'MT', 'TM', 'TT'].indexOf(patientLeaderGenotype()) >= 0"
+    class="instructions">
+             For a{{(patientLeaderGenotype()[0] == 'M' ? 'n' : '') + ' ' +
+                     patientLeaderGenotype()}}-typed patient, the following order is recommended:
+             <div class="risk-bar">
+                <app-risk-bar></app-risk-bar>
+            </div>
+            <div
+                *ngFor="let category of categories[patientLeaderGenotype() == 'TM' ? 'MT' : patientLeaderGenotype()]"
+                 class="donor-category"
+                 [ngClass]="{highlighted : 
+                    category['leader_match_status'] == donors[selected].leaderMatch.join('') 
+                    && (category['hla_match'] == '' ||
+                        ((category['hla_match'] == 'Allele mismatch' &&
+                        donors[selected].hlaBMatch.indexOf('L') >= 0) ||
+                       (category['hla_match'] == 'Antigen mismatch' &&
+                        donors[selected].hlaBMatch.indexOf('M') >= 0)))
+                   }">
+                    <div class="leader-match">{{ category['leader_match_status'] }}</div>
+                    <div class="match-details">
+                        <p>{{ category['leader_match'] }}</p>
+                        <p>{{ category ['hla_match'] }}</p>
+                    </div>
+            </div>
+</div>

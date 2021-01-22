@@ -1,0 +1,56 @@
+<!--
+-- Copyright (c) 2021 Be The Match.
+--
+-- This file is part of BLEAT 
+-- (see https://github.com/nmdp-bioinformatics/b-leader).
+--
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU Lesser General Public License as published by
+-- the Free Software Foundation, either version 3 of the License, or
+-- (at your option) any later version.
+--
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU Lesser General Public License for more details.
+--
+-- You should have received a copy of the GNU Lesser General Public License
+-- along with this program. If not, see <http://www.gnu.org/licenses/>.
+-->
+<div class="leader-type disable-select"
+     [ngClass] = "[leaderType, 
+                   allotype.exceptions ? 'exceptions' : '',
+                   transparent ? 'transparent' : '', 
+                   movedPatientGenotype ? 'moved' : '']"
+     [ngbTooltip]="tooltipContent"
+     container="body">
+     <img src="/assets/img/loading-indicator.gif"
+            *ngIf="allotype.initiatedCall && leaderType == ''"
+            width="10px">
+      {{leaderType}}
+</div>
+<ng-template #tooltipContent>
+    <div *ngIf="allotype.leader" class="tooltip">
+        {{allotype.hlaB}}
+        <div *ngIf="allotype.known">
+            <p>{{allotype.leader}} (Potential known major allele allotypes)</p>
+                  {{allotype.known.length > 20 ?
+                        allotype.known.slice(0, 20).join(', ') + '...' :
+                        allotype.known.join(' ')}}
+            <br>
+        </div>
+        <div *ngIf="allotype.exceptions" style="color: red">
+            <p>Potential minor allele exceptions</p>
+                  {{allotype.exceptions.length > 20 ?
+                        allotype.exceptions.slice(0, 20).join(', ') + '...' :
+                        allotype.exceptions.join(', ')}}
+        </div>
+        <div *ngIf="allotype.unknowns" style="color: grey">
+            <br>
+            <p>X (Unknown leader type)</p>
+            {{allotype.unknowns.length > 20 ?
+                  allotype.unknowns.slice(0, 20).join(', ') + '...' :
+                  allotype.unknowns.join(', ')}}
+        </div>
+    </div>
+</ng-template>

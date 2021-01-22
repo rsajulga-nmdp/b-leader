@@ -1,0 +1,103 @@
+/*
+Copyright (c) 2021 Be The Match.
+
+This file is part of BLEAT 
+(see https://github.com/nmdp-bioinformatics/b-leader).
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+@import '../../../../styles.scss';
+
+:host {
+    width: 104px;
+    height: 28px;
+    font-size: 14px;
+    margin-top: 2px;
+    float:left;
+border: 1px solid;
+    border-radius: 2px;
+    padding-top: 2px;
+    padding-left: 4px;
+    background-color: white;
+    -webkit-transition: background-color .5s ease-in;
+    -moz-transition: background-color .5s ease-in;
+    -o-transition: background-color .5s ease-in;
+    transition: background-color .5s ease-in;
+    font-family: Arial;
+}
+
+:host.sharedAllotype1 {
+    background-color:$SECONDARY_GREEN;
+}
+
+:host.sharedAllotype2 {
+    background-color:$SECONDARY_BLUE;
+}
+
+:host.sharedAllotype1Flipped {
+    background-color:$SECONDARY_BLUE;
+}
+
+:host.sharedAllotype2Flipped {
+    background-color:$SECONDARY_GREEN;
+}
+
+p {
+    height: 20px;
+    margin: 1px;
+    font-size: 12px;
+}
+
+span.prefix {
+    background-color: #bababa;
+    /* color: #888; */
+    color: black;
+    line-height: 16px;
+    font-size: 9pt;
+    width: 12px;
+    height: calc(25px - 2 * (3px + 1px) - 1px);
+    padding: 3px;
+    padding-left: 2px;
+    margin-top: 2px;
+    box-shadow:0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+    float: left;
+    font-size: 14px;
+}
+
+input {
+    height: 22px;
+    width: 80px;
+    background-color: white;
+    box-shadow: inset 1px 1px 1px #a6a6a6;
+    margin-top: -5px;
+    padding-left: 2px;
+    float:left;
+}
+
+::ng-deep .mat-form-field-infix {
+    width: 80px !important;
+    border-top: 1px solid transparent;
+}
+
+.mat-active { background-color: $HIGHLIGHT !important; }
+
+.options {
+    font-size: 12px;
+    width: 200px;
+}
+
+.mat-option {
+    height: 20px;
+    padding: 0px 1px;
+}

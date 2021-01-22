@@ -1,0 +1,61 @@
+/*
+Copyright (c) 2021 Be The Match.
+
+This file is part of BLEAT 
+(see https://github.com/nmdp-bioinformatics/b-leader).
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+@import '../../../../styles.scss';
+
+:host {
+    float: left;
+    position: relative;
+}
+
+.hlaB {
+    background-color: white;
+    height: 51px;
+    width: 8px;
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 2px;
+    position: absolute;
+    top: 10px;
+    z-index: 2;
+}
+
+.leader {
+    background-color: white;
+    width: 8px;
+    margin: 5px;
+    height: 25px;
+    top: 92px;
+    border: 1px solid black;
+    border-radius: 2px;
+    position:absolute;
+    z-index: 2;
+}
+
+.spine {
+    border: 1px solid black;
+    height: 135px;
+    left: 9px;
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+}
+
+.T { background-color: $T_LEADER;}
+.M { background-color: $M_LEADER;}

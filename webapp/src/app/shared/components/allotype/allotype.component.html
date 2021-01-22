@@ -1,0 +1,43 @@
+<!--
+-- Copyright (c) 2021 Be The Match.
+--
+-- This file is part of BLEAT 
+-- (see https://github.com/nmdp-bioinformatics/b-leader).
+--
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU Lesser General Public License as published by
+-- the Free Software Foundation, either version 3 of the License, or
+-- (at your option) any later version.
+--
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU Lesser General Public License for more details.
+--
+-- You should have received a copy of the GNU Lesser General Public License
+-- along with this program. If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!-- <app-diagram
+    [index]="index"
+    [subject]="subject"></app-diagram> -->
+<div class="spine"></div>
+<app-leader
+    [leaderType]="allotype.leader"
+    [movedPatientGenotype]="movedPatientGenotype && subject.type=='patient'"
+    [allotype]="allotype"
+    [transparent]="selected && subject.type=='donor' && movedPatientGenotype">
+</app-leader>
+<app-allele-autocomplete
+    [movedPatientGenotype]="movedPatientGenotype && subject.type=='patient'"
+    [ngClass]="{'transparent' : selected && subject.type=='donor' && movedPatientGenotype,
+                'editing' : formValue != allotype.hlaB,
+                'sharedAllotype1' : index == 0 && (getSharedIndex() == index || subject.type == 'patient'),
+                'sharedAllotype2' : index == 1 && (getSharedIndex() == index || subject.type == 'patient'),
+                'sharedAllotype1Flipped' : index == 0 && (getSharedIndex() - 10 == index && subject.type == 'donor'),
+                'sharedAllotype2Flipped' : index == 1 && (getSharedIndex() - 10 == index && subject.type == 'donor')}"
+    [transparent]="selected && subject.type=='donor' && movedPatientGenotype"
+    [allotype]="allotype"
+    (hlaBinput)="updateHlaBLeader($event)"
+    [leaderMap]="leaderMap">
+</app-allele-autocomplete>

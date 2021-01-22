@@ -1,0 +1,106 @@
+/*
+Copyright (c) 2021 Be The Match.
+
+This file is part of BLEAT 
+(see https://github.com/nmdp-bioinformatics/b-leader).
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+button {
+    width: 55px;
+    height: 20px;
+    margin: 5px;
+    font-size: 12px;
+    float: left;
+    text-align: center;
+    border: 0px;
+}
+
+:host {
+    text-align: center;
+}
+
+.option {
+    border: 1px solid black;
+    background-color: white;
+    height: 25vh;
+    color: black;
+    padding: 15px;
+    border-radius:1%;
+    text-align: left;
+}
+
+textarea {
+    margin: 10px;
+    border: 1px solid black;
+}
+
+.centered {
+    font-size: 12px;
+    margin: auto;
+}
+
+input {
+    margin: 10px;
+}
+
+mat-form-field{
+    width: 800px;
+    margin-right: 25px;
+}
+
+.mat-header-cell, .mat-cell {
+    padding: 10px;
+    max-width: 200px;
+    overflow: scroll;
+    background-color: white;
+    color: black;
+}
+
+h3 {
+    text-align: center;
+}
+
+table.mat-table {
+    margin: auto;
+}
+
+a {
+    color : white;
+}
+
+ul {
+    text-align: left;
+}
+
+.help {
+    height: 25vh;
+    overflow-y: scroll;
+    font-size: 12px;
+}
+
+.dialog-import {
+    height: 25px;
+    width: 50px;
+    float: left;
+    margin-left: 0px;
+    margin-right: 10px;
+}
+
+.overflow-warning {
+    width: calc(100% - 60px);
+    height: 60px;
+    overflow-y: scroll;
+    font-size: 12px;
+}

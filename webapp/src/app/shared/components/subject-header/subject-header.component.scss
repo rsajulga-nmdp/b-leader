@@ -1,0 +1,95 @@
+/*
+Copyright (c) 2021 Be The Match.
+
+This file is part of BLEAT 
+(see https://github.com/nmdp-bioinformatics/b-leader).
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+:host {
+    width: 100%;
+    float: left;
+    font-family: Arial;
+}
+
+h3 {
+    text-align: center;
+    height: 0px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    line-height: 0px;
+}
+
+#id {
+    border-left: 0px;
+}
+
+.header-bar {
+    width:100%;
+    height: 60px;
+    border-top: 1px solid #9AA3A8;
+    border-bottom: 2px solid black;
+}
+
+.header {
+    width: 147px;
+    height: 100%;
+    font-size: 12px;
+    font-weight: bold;
+    float: left;
+    text-align: center;
+    line-height: 60px;
+    border-left: 1px solid #9AA3A8;
+}
+
+.top-header, .subheaders {
+    width: 100%;
+    height: 50%;
+    line-height: 30px;
+    // border-bottom: 1px solid #9AA3A8;
+}
+
+.subheaders {
+    border-top: 1px solid #9AA3A8;
+    font-style: italic;
+    font-weight: normal;
+    div {
+        line-height: 30px;
+        height: 100%;
+        float: left;
+    }
+}
+
+.input {
+    float: left;
+    #id { width:100px }
+    #typing { width: 190px; }
+    .leader { width: 62px }
+    .hlaB {
+        width:126px;
+        border-left: 1px solid #9AA3A8;
+     }
+}
+
+ .matching-status {
+    float: left;
+    .leader { 
+        width: 67px;
+        text-align:left;
+        padding-left: 18px; }
+    .hlaB {
+        width:54px;
+        border-left: 1px solid #9AA3A8;
+     }
+}

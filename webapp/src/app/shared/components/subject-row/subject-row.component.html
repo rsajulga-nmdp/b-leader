@@ -1,0 +1,54 @@
+<!--
+-- Copyright (c) 2021 Be The Match.
+--
+-- This file is part of BLEAT 
+-- (see https://github.com/nmdp-bioinformatics/b-leader).
+--
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU Lesser General Public License as published by
+-- the Free Software Foundation, either version 3 of the License, or
+-- (at your option) any later version.
+--
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU Lesser General Public License for more details.
+--
+-- You should have received a copy of the GNU Lesser General Public License
+-- along with this program. If not, see <http://www.gnu.org/licenses/>.
+-->
+<div class="id">
+    <input tabindex="-1" type="text" [formControl]="id">
+    <img
+    class='delete-button'
+    src="/assets/img/delete-button.png"
+    alt="delete-button"
+    *ngIf="subjects.length > 1"
+    (click)="remove()"
+    tabindex="-1">
+</div>
+<div class="genotype">
+    <app-genotype
+        [index]="index"
+        [ngClass]="{'move-to-donor' : subject.type=='patient' && movedPatientGenotype}"
+        [ngStyle]="{'left' : (subject.type=='patient' && movedPatientGenotype ? '294' : '0') + 'px',
+                    'top' : (subject.type=='patient' && movedPatientGenotype ? '0' : '0') + 'px'}"
+        [movedPatientGenotype]="movedPatientGenotype"
+        [flippedPatient]="flippedPatient"
+        [patient]="patient"
+        [subject]="subject"
+        [subjects]="subjects"
+        [selectIndex]="selectIndex"
+        [multiple]="subjects.length > 1"
+        [leaderMap]="leaderMap"
+        (initiatedMatching)="initiatedMatchingAssignment()"
+        >
+    </app-genotype>
+</div>
+<div class="matching-status"
+    *ngIf="subject.type == 'donor'">
+    <app-matching-status
+        [patient]="patient"
+        [initiatedMatching]="initiatedMatching"
+        [subject]="subject"></app-matching-status>
+</div>

@@ -1,0 +1,80 @@
+/*
+Copyright (c) 2021 Be The Match.
+
+This file is part of BLEAT 
+(see https://github.com/nmdp-bioinformatics/b-leader).
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+:host {
+    // background-color: gray;
+    width: 100%;
+    height: 80px;
+    float: left;
+    border-bottom: 1px solid #9AA3A8;
+    position: relative;
+    scroll-snap-align: start;
+    -webkit-transition: background-color 1s;
+	-moz-transition: background-color 1s;
+}
+
+.genotype { width:190px; }
+.matching-status { width: 130px; }
+ 
+:host > div {
+    height: 80px;
+    border-left: 1px solid #9AA3A8;
+    float: left;
+}
+
+:host > div.id{
+    border-left: 0px; width:100px;
+}
+
+input {
+    padding: 5px;
+    width: 67px;
+    height: 11px;
+    font-size: 12px;
+    z-index:0;
+    float: left;
+    margin: 13px 10px;
+}
+
+button {
+    border-radius:50%;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 20px;
+    padding: 0px;
+    background-color: grey;
+    color: white;
+    position: absolute;
+    margin-left: 60.5px;
+    margin-top: -11.5px;
+    z-index: 99;
+}
+
+.view-icon {
+    height: 15px;
+    margin: 33px 5px;
+}
+
+.delete-button {
+    height: 8px;
+    margin: 10px -15px;
+    position: absolute;
+    background-color:white;
+}

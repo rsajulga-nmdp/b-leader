@@ -1,0 +1,55 @@
+<!--
+-- Copyright (c) 2021 Be The Match.
+--
+-- This file is part of BLEAT 
+-- (see https://github.com/nmdp-bioinformatics/b-leader).
+--
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU Lesser General Public License as published by
+-- the Free Software Foundation, either version 3 of the License, or
+-- (at your option) any later version.
+--
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU Lesser General Public License for more details.
+--
+-- You should have received a copy of the GNU Lesser General Public License
+-- along with this program. If not, see <http://www.gnu.org/licenses/>.
+-->
+<app-subject-header
+    [subjects]="subjects">
+</app-subject-header>
+<div class="indicator-wrapper"
+    *ngIf="sorting && subjects[0].type=='donor'">
+    <img src="/assets/img/bar-loading-indicator.gif"
+            class="loading-indicator">
+</div>
+<div class="content"
+        (scroll)="onScroll($event)" #content>
+    <app-subject-row
+        [ngStyle]="{'background-color' : i == selectIndex ? '#f3f7d4' : 
+                                         i % 2 ? 'white' : '#F1F4F6'}"
+        *ngFor="let subject of subjects.slice(0, 50); let i = index"
+        [index]="i"
+        [flippedPatient]="flippedPatient"
+        [patient]="patient"
+        [subject]="subject"
+        [subjects]="subjects"
+        [matchParadigm]="'b-leader'"
+        [selectIndex]="selectIndex"
+        [movedPatientGenotype]="movedPatientGenotype"
+        (notifyMovedPatientGenotype)="emitMovedPatientGenotype($event)"
+        (removeSubject)="removeSubject($event)"
+        [leaderMap]="leaderMap"></app-subject-row>
+    <img
+        src="/assets/img/add-button.png"
+        tabindex="2"
+            *ngIf="type=='donors' || (type=='patient' && subjects.length > 1)"
+            (click)="addSubject()">
+    <app-patient-panel
+        *ngIf="type=='patient' && subjects.length <= 1"
+        [selected]="selected"
+        [donors]="donors"
+        [subjects]="subjects"></app-patient-panel>
+</div>

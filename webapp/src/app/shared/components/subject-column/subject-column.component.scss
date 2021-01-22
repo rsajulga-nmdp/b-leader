@@ -1,0 +1,83 @@
+/*
+Copyright (c) 2021 Be The Match.
+
+This file is part of BLEAT 
+(see https://github.com/nmdp-bioinformatics/b-leader).
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+:host {
+    height: calc(100% - 50px);
+    float: left;
+    border-top: 1px solid #b1b1b1;
+    overflow: hidden;
+}
+
+:host.patient {
+    min-width: 310px;
+    width: 30.6%;
+    z-index:1;
+    border-bottom: 1px solid #9AA3A8;
+    border-left: 1px solid #9AA3A8;
+}
+
+:host.donors {
+    width: 49%;
+    min-width: 440px;
+    border-left: 1px solid #9AA3A8;
+    border-right: 1px solid #9AA3A8;
+    border-bottom: 1px solid #9AA3A8;
+    z-index:0;
+    position:relative;
+    overflow:hidden;
+}
+
+img {
+    margin: 20px;
+    margin-bottom: 100vh;
+}
+
+.content {
+    height: 100vh;
+    overflow: scroll;
+    float: left;
+    width: 100%;
+    scroll-behavior: smooth;
+}
+
+:host.donors .content {
+    scroll-snap-type: y mandatory;
+    overflow-x: hidden;
+}
+
+.content > div {
+    scroll-snap-align: start;
+}
+
+.indicator-wrapper {
+    background-color: white;
+    margin:0px;
+    opacity:0.85;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 88px;
+    left: 0;
+    z-index: 2;
+    text-align: center;
+}
+
+.loading-indicator {
+    margin: 10vh auto;
+}

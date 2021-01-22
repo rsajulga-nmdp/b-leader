@@ -1,0 +1,82 @@
+<!--
+-- Copyright (c) 2021 Be The Match.
+--
+-- This file is part of BLEAT 
+-- (see https://github.com/nmdp-bioinformatics/b-leader).
+--
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU Lesser General Public License as published by
+-- the Free Software Foundation, either version 3 of the License, or
+-- (at your option) any later version.
+--
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU Lesser General Public License for more details.
+--
+-- You should have received a copy of the GNU Lesser General Public License
+-- along with this program. If not, see <http://www.gnu.org/licenses/>.
+-->
+<p mat-dialog-title>Import</p>
+<div class="help">
+    <p>You will need to provide several columns with 'B*' prefixes. Header names are expected but can be any value. 
+        These are the configurations:</p>
+        <ul>
+            <li>multiple donors (two <i>HLA-B</i> columns)</li>
+            <li>one patient with multiple donors (four <i>HLA-B</i> columns; first two columns contain only one row)</li>
+            <li>multiple patient-donor pairs (four filled <i>HLA-B</i> columns)</li>
+        </ul>
+        <p>Non-<i>HLA-B</i> columns will be treated as IDs. You may include 0, 1, or 2 of these columns.</p>
+</div>
+<div class="centered">
+    <span><b>Upload your .csv dataset here</b></span>
+    <input type="file" accept=".csv"
+    (change)="handleFileInput($event)"/>
+</div>
+<div mat-dialog-content 
+     class="option">
+     <h3>Data Preview</h3>
+    <table mat-table [dataSource]="data.dataRows?.slice(0, 50)" class="mat-elevation-z8">
+        <ng-container matColumnDef="patID">
+            <th mat-header-cell *matHeaderCellDef>Patient ID</th>
+            <td mat-cell *matCellDef="let element">{{element.patID}}</td>
+        </ng-container>
+        <ng-container matColumnDef="patHlaB1">
+            <th mat-header-cell *matHeaderCellDef>Patient <i>HLA-B</i> Type 1</th>
+            <td mat-cell *matCellDef="let element">{{element.patHlaB1}}</td>
+        </ng-container>
+        <ng-container matColumnDef="patHlaB2">
+            <th mat-header-cell *matHeaderCellDef>Patient <i>HLA-B</i> Type 2</th>
+            <td mat-cell *matCellDef="let element">{{element.patHlaB2}}</td>
+        </ng-container>
+        <ng-container matColumnDef="donID">
+            <th mat-header-cell *matHeaderCellDef>Donor ID</th>
+            <td mat-cell *matCellDef="let element">{{element.donID}}</td>
+        </ng-container>
+        <ng-container matColumnDef="donHlaB1">
+            <th mat-header-cell *matHeaderCellDef>Donor <i>HLA-B</i> Type 1</th>
+            <td mat-cell *matCellDef="let element">{{element.donHlaB1}}</td>
+        </ng-container>
+        <ng-container matColumnDef="donHlaB2">
+            <th mat-header-cell *matHeaderCellDef>Donor <i>HLA-B</i> Type 2</th>
+            <td mat-cell *matCellDef="let element">{{element.donHlaB2}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="data.displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: data.displayedColumns;"></tr>
+    </table>
+</div>
+<div mat-dialog-actions>
+    <button mat-button
+        class="dialog-import"
+           [mat-dialog-close]= "data.dataRows">Import</button>
+    <div
+        class="overflow-warning"
+        *ngIf="data.dataRows?.length > 50">
+            There are {{data.dataRows?.length}} rows in this file. 
+            Due to technical limitations, only the first 50 rows will be shown.
+            Calculations for the first 50 rows occur automatically. You will be alerted 
+            when these are finished. Next, press export to continue calculations for the rest 
+            of the rows. An annotated file will download at 100%.
+        </div>
+</div>

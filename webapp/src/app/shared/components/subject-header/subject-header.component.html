@@ -1,0 +1,44 @@
+<!--
+-- Copyright (c) 2021 Be The Match.
+--
+-- This file is part of BLEAT 
+-- (see https://github.com/nmdp-bioinformatics/b-leader).
+--
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU Lesser General Public License as published by
+-- the Free Software Foundation, either version 3 of the License, or
+-- (at your option) any later version.
+--
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU Lesser General Public License for more details.
+--
+-- You should have received a copy of the GNU Lesser General Public License
+-- along with this program. If not, see <http://www.gnu.org/licenses/>.
+-->
+<h3>{{subjects[0].type.charAt(0).toUpperCase() +
+    subjects[0].type.slice(1)}}
+</h3>
+<div class="header-bar">
+  <div class="input">
+      <div class="header" id="id">ID</div>
+      <div class="header" id="typing">
+          <div class="top-header">Typing</div>
+          <div class="subheaders">
+            <div class="leader">Leader</div>
+            <div class="hlaB">HLA-B</div>
+        </div>
+      </div>
+  </div>
+  <div class="matching-status"
+      *ngIf="subjects[0].type=='donor'">
+            <div class="header" id="typing">
+                <div class="top-header">Matching Status</div>
+                <div class="subheaders">
+                <div class="leader">Leader</div>
+                <div class="hlaB">HLA-B</div>
+            </div>
+            </div>
+  </div>
+</div>

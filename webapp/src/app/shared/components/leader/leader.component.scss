@@ -1,0 +1,70 @@
+/*
+Copyright (c) 2021 Be The Match.
+
+This file is part of BLEAT 
+(see https://github.com/nmdp-bioinformatics/b-leader).
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+:host {
+    width: 50px;
+    height: 25px;
+    padding: 4px 10px 0px 0px;
+    float: left;
+    font-family: Arial;
+}
+
+.leader-type {
+    width: 45px;
+    height: 25px;
+    line-height: 24px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 5px;
+    float: left;
+    box-shadow: 2px 2px 2px #a6a6a6;
+    background-color: white;
+    // border: solid 1px black;
+    -webkit-transition: background-color 1s;
+    -moz-transition: background-color 1s;
+}
+
+.leader-type.transparent {
+    background-color: transparent;
+}
+
+.leader-type.moved {
+    color: red;
+}
+
+.leader-type.exceptions {
+    color: red;
+}
+
+.tooltip {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 5px;
+    width: 300px;
+    font-size: 12px;
+}
+
+.disable-select {
+    user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
+}
