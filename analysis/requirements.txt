@@ -1,0 +1,9 @@
+biopython==1.75
+ipykernel==5.3.4
+ipython==7.19.0
+jupyter==1.0.0
+numpy==1.19.4
+pandas==1.1.4
+regex==2020.11.13
+requests==2.22.0
+seq-ann==1.1.0
