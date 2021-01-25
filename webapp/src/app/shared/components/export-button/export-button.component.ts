@@ -44,7 +44,7 @@ export class ExportButtonComponent implements OnInit {
   }
 
   export() {
-    if (this.patient.length > 1 && this.donors.length > 10){
+    if (this.patient.length > 1 && 50 == this.numAnnotatedDonors()){
       this._getHiddenResults();
     } else {
       this._exportSheet();
