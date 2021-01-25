@@ -42,7 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AlleleAutocompleteComponent } from './shared/components/allele-autocomplete/allele-autocomplete.component';
 import { AllotypeComponent } from './shared/components/allotype/allotype.component';
 import { LeaderComponent } from './shared/components/leader/leader.component';
-import { HelpComponent } from './modules/b-leader/help/help.component';
+import { IntroComponent } from './modules/b-leader/intro/intro.component';
 import { SubjectsComponent } from './shared/components/subjects/subjects.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { SortButtonComponent } from './shared/components/sort-button/sort-button.component';
@@ -77,7 +77,7 @@ import { FileSaverService } from 'ngx-filesaver';
     AlleleAutocompleteComponent,
     AllotypeComponent,
     LeaderComponent,
-    HelpComponent,
+    IntroComponent,
     SubjectsComponent,
     NavbarComponent,
     SortButtonComponent,

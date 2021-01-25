@@ -20,11 +20,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-help',
-  templateUrl: './help.component.html',
-  styleUrls: ['./help.component.scss']
+  selector: 'app-intro',
+  templateUrl: './intro.component.html',
+  styleUrls: ['./intro.component.scss']
 })
-export class HelpComponent implements OnInit {
+export class IntroComponent implements OnInit {
 
   constructor() { }
 
