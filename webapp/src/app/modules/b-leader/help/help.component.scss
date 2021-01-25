@@ -34,6 +34,17 @@ h3 {
     text-align: left;
 }
 
+.class {
+    width: 100%;
+}
+
+.column {
+    width: 50%;
+    height: 100%;
+    text-align: left;
+    float: left;
+}
+
 span {
     background-color: grey;
     color: white;
@@ -41,4 +52,18 @@ span {
     border-radius: 25%;
     box-shadow: 2px 2px 2px #a6a6a6;
     padding: 2px;
+}
+
+.reference {
+    font-size: 10px;
+    line-height: 12px;
+    padding: 1px;
+}
+
+ol {
+    text-align: left;
+}
+
+p {
+    margin: 0px;
 }
