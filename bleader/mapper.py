@@ -67,7 +67,8 @@ class LeaderMapper(object):
             hlaB_genotype_patient = genotype_patient['hla-b_genotype']
             hlaB_genotype_donor = genotype_donor['hla-b_genotype']
 
-            shared_leader = shared_allotype = leader_match_status = match_status = unshared_leader_patient = unshared_leader_donor = None
+            shared_leader = shared_allotype_patient = shared_allotype_donor = leader_match_status = None
+            match_status = unshared_leader_patient = unshared_leader_donor = None
             if index_shared is not None and match_code[index_shared] in ['A', 'P']:
                 shared_leader = (leader_genotype_patient[index_shared]  == leader_genotype_donor[index_shared] and
                                  leader_genotype_patient[index_shared] or 'X')
