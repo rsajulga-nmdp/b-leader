@@ -21,7 +21,6 @@ import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild, 
 import { Subject } from '@app/shared/models/subject/subject.model';
 import { SubjectRowComponent } from '@app/shared/components/subject-row/subject-row.component';
 import { SubjectsService } from '@app/core/services/subjects/subjects.service';
-import { ScrollService } from '@app/core/services/scroll/scroll.service';
 
 @Component({
   selector: 'app-subject-column',
@@ -44,15 +43,9 @@ export class SubjectColumnComponent implements OnInit, AfterViewInit {
   selectIndex: number = 0;
   @ViewChild(SubjectRowComponent, {static: false}) elementView: ElementRef;
   @ViewChild('content', {static : false}) contentView: ElementRef;
-  constructor(private subjectsService: SubjectsService,
-    private scrollService: ScrollService) { }
+  constructor(private subjectsService: SubjectsService) { }
 
   ngOnInit() {
-    if (this.type == 'patient'){
-      this.scrollService.scroll.subscribe(pos => {
-        this.updateScroll(pos);
-      })
-    }
   }
 
   updateScroll(position : number) {
@@ -83,7 +76,6 @@ export class SubjectColumnComponent implements OnInit, AfterViewInit {
   onScroll(event: Event){
     const rowHeight = 81;
     const scrollPos = event.target['scrollTop'];
-    this.scrollService.changeScroll(scrollPos);
     const selectIndex = Math.round(scrollPos / rowHeight);
     if (this.selectIndex != selectIndex){
       this.selectIndex = selectIndex;
