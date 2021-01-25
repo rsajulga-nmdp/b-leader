@@ -18,9 +18,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 :host {
-    height: calc(100% - 50px);
     float: left;
-    border-top: 1px solid #b1b1b1;
     overflow: hidden;
 }
 
@@ -28,7 +26,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
     min-width: 310px;
     width: 30.6%;
     z-index:1;
-    border-bottom: 1px solid #9AA3A8;
     border-left: 1px solid #9AA3A8;
 }
 
@@ -37,10 +34,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
     min-width: 440px;
     border-left: 1px solid #9AA3A8;
     border-right: 1px solid #9AA3A8;
-    border-bottom: 1px solid #9AA3A8;
     z-index:0;
     position:relative;
     overflow:hidden;
+}
+
+:host.single-patient {
+    height: 100%;
 }
 
 img {
@@ -49,7 +49,7 @@ img {
 }
 
 .content {
-    height: 100vh;
+    height: 100%;
     overflow: scroll;
     float: left;
     width: 100%;

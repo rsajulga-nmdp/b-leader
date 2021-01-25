@@ -28,22 +28,34 @@
     [donors]="donors"
     (sorting)="assignSorting($event)"
     [deletedSubjects]="deletedSubjects"></app-control-panel>
-<app-subject-column
-    [subjects]="patient"
-    [donors]="donors"
-    [type]="'patient'"
-    [ngClass]="'patient'"
-    [movedPatientGenotype]="movedPatientGenotype"
-    [selected]="selected"
-    [flippedPatient]="flippedPatient"
-    [leaderMap]="leaderMap"></app-subject-column>
-<app-subject-column
-    [patient]="patient"
-    [subjects]="donors"
-    [type]="'donors'"
-    [sorting]="sorting"
-    [ngClass]="'donors'"
-    (notifyMovedPatientGenotype)="movePatientGenotype($event)"
-    (deletedSubject)="stashSubject($event)"
-    (changeRow)="assignSelected($event)"
-    [leaderMap]="leaderMap"></app-subject-column>
+<app-subject-header
+    class="patient"
+    [subjects]="patient">
+</app-subject-header>
+<app-subject-header
+    class="donors"
+    [subjects]="donors">
+</app-subject-header>
+<div class="content">
+    <app-subject-column
+        [subjects]="patient"
+        [donors]="donors"
+        [type]="'patient'"
+        class="patient"
+        [ngClass]="{'single-patient' : patient.length <= 1}"
+        [movedPatientGenotype]="movedPatientGenotype"
+        [selected]="selected"
+        [flippedPatient]="flippedPatient"
+        [leaderMap]="leaderMap"></app-subject-column>
+    <app-subject-column
+        [patient]="patient"
+        [subjects]="donors"
+        [type]="'donors'"
+        [sorting]="sorting"
+        class="donors"
+        [ngClass]="{'single-patient' : patient.length <= 1}"
+        (notifyMovedPatientGenotype)="movePatientGenotype($event)"
+        (deletedSubject)="stashSubject($event)"
+        (changeRow)="assignSelected($event)"
+        [leaderMap]="leaderMap"></app-subject-column>
+</div>

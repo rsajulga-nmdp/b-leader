@@ -31,6 +31,6 @@ export class ScrollService {
   constructor() { }
 
   changeScroll(scroll : number){
-    this.scrollSource.next(scroll);
+    // this.scrollSource.next(scroll);
   }
 }
