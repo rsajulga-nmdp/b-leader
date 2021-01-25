@@ -62,7 +62,6 @@ export class GenotypeComponent implements OnInit {
     this.leaderMatcher.getLeaderMatchInfo(patient, [this.subject]).then(leaderMatchInfo => {
       leaderMatchInfo.forEach((subjectInfo: Object, index: number) => {
         Object.assign(this.subject, subjectInfo)
-        patient['sharedAllotype'] = subjectInfo['sharedAllotypePatient'];
         this.subject['sharedAllotype'] = subjectInfo['sharedAllotypeDonor'];
         this.subject.rank = null;
         this.subject.loading = false;
