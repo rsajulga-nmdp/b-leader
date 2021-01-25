@@ -18,7 +18,7 @@
 -- along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 <div class="stats">
-    <span *ngIf="donorsAnnotated() == 50 && donorsAnnotated() < this.donors.length">
+    <span *ngIf="donorsAnnotated() == limit && donorsAnnotated() < this.donors.length">
         <i>Press export to finish the rest of the calculations.
              An annotated file will download at completion.</i></span>
     {{ donorsAnnotated() }} / {{ this.donors.length }}

@@ -78,6 +78,7 @@ export class ImportButtonComponent implements OnInit {
   styleUrls: ['./import-button.component.scss']
 })
 export class ImportDialogComponent implements OnInit {
+  limit: number;
   file: File;
 
   constructor(
@@ -87,6 +88,7 @@ export class ImportDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit() {
+    this.limit = this.importService.getLimit();
   }
 
   handleFileInput($event) {

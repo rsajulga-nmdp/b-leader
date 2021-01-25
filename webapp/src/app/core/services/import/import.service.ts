@@ -40,6 +40,7 @@ export class ImportService {
   hlaHeaders : string[];
   idHeaders : string[];
   importing : BehaviorSubject<boolean>;
+  limit : number = 100;
 
   constructor(private subjectsService: SubjectsService) {
     this.importing = new BehaviorSubject(false);
@@ -98,5 +99,9 @@ export class ImportService {
 
   setAsImporting(importing: boolean){
     this.importing.next(importing);
+  }
+
+  getLimit(){
+    return this.limit;
   }
 }

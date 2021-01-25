@@ -22,6 +22,7 @@ import { Subject } from '@app/shared/models/subject/subject.model';
 import { LeaderMatchingService } from '@app/core/services/bleader/leaderMatching/leader-matching.service';
 import * as XLSX from 'xlsx';
 import { FileSaverService } from 'ngx-filesaver';
+import { ImportService } from '@app/core/services/import/import.service';
 
 @Component({
   selector: 'app-export-button',
@@ -34,7 +35,8 @@ export class ExportButtonComponent implements OnInit {
   interrupted : boolean = false;
 
   constructor(private leaderMatchingService: LeaderMatchingService,
-    private _FileSaverService: FileSaverService) { }
+    private _FileSaverService: FileSaverService,
+    private importService: ImportService) { }
 
   ngOnInit() {
   }
@@ -44,7 +46,7 @@ export class ExportButtonComponent implements OnInit {
   }
 
   export() {
-    if (this.patient.length > 1 && 50 == this.numAnnotatedDonors()){
+    if (this.patient.length > 1 && this.importService.getLimit() == this.numAnnotatedDonors()){
       this._getHiddenResults();
     } else {
       this._exportSheet();

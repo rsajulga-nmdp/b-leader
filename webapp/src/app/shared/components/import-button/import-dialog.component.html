@@ -72,10 +72,10 @@
            [mat-dialog-close]= "data.dataRows">Import</button>
     <div
         class="overflow-warning"
-        *ngIf="data.dataRows?.length > 50">
+        *ngIf="data.dataRows?.length > limit">
             There are {{data.dataRows?.length}} rows in this file. 
-            Due to technical limitations, only the first 50 rows will be shown.
-            Calculations for the first 50 rows occur automatically. You will be alerted 
+            Due to technical limitations, only the first {{limit}} rows will be shown.
+            Calculations for the first {{limit}} rows occur automatically. You will be alerted 
             when these are finished. Next, press export to continue calculations for the rest 
             of the rows. An annotated file will download at 100%.
         </div>

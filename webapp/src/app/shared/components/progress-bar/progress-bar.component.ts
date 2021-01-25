@@ -19,6 +19,7 @@
  */
 import { Component, Input, OnInit } from '@angular/core';
 import { Subject } from '@app/shared/models/subject/subject.model';
+import { ImportService } from '@app/core/services/import/import.service';
 
 @Component({
   selector: 'app-progress-bar',
@@ -28,15 +29,17 @@ import { Subject } from '@app/shared/models/subject/subject.model';
 export class ProgressBarComponent implements OnInit {
   @Input() donors: Subject[];
   alerted : boolean = false;
+  limit : number;
 
-  constructor() { }
+  constructor(private importService : ImportService) { }
 
   ngOnInit() {
+    this.limit = this.importService.getLimit();
   }
 
   donorsAnnotated() {
     let numDonorsAnnotated = this.donors.filter(d => d.annotated).length;
-    if (numDonorsAnnotated == 50 && numDonorsAnnotated < this.donors.length
+    if (numDonorsAnnotated == this.limit && numDonorsAnnotated < this.donors.length
         && !this.alerted){
       alert("Press export to finish the rest of the calculations. An annotated file will download at completion.");
       this.alerted = true;
