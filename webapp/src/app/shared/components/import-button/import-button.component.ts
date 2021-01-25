@@ -97,6 +97,7 @@ export class ImportDialogComponent implements OnInit {
         skipEmptyLines : true,
         header: true,
         complete: (result) => {
+          this.importService.setAsImporting(true);
           this.data.dataRows = this.importService.parseRows(result['data']);
         }
       })
