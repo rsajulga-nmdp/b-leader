@@ -49,12 +49,12 @@ export class AllotypeComponent implements OnInit {
 
 
   getSharedIndex(){
-    if (this.patient && this.subject["sharedAllotype"]){
+    if (this.patient && this.patient["sharedAllotype"] &&
+        this.subject["sharedAllotype"]){
       const donorAllotypes = this.subject.allotypes.map(a => a.hlaB);
       const patientAllotypes = this.patient.allotypes.map(a => a.hlaB);
-      const sharedAllotype = this.subject["sharedAllotype"].replace('B*','')
-      const donorSharedIndex = donorAllotypes.indexOf(sharedAllotype)
-      const patientSharedIndex = patientAllotypes.indexOf(sharedAllotype);
+      const donorSharedIndex = donorAllotypes.indexOf(this.subject["sharedAllotype"].replace('B*',''))
+      const patientSharedIndex = patientAllotypes.indexOf(this.patient["sharedAllotype"].replace('B*',''));
       const sharedIndex = donorSharedIndex == patientSharedIndex ? donorSharedIndex :
                         donorSharedIndex + 10;
       return sharedIndex;

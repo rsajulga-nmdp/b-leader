@@ -20,6 +20,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subject } from '@app/shared/models/subject/subject.model'
 import { LeaderMatchingService } from '@app/core/services/bleader/leaderMatching/leader-matching.service';
+import { getMatScrollStrategyAlreadyAttachedError } from '@angular/cdk/overlay/typings/scroll/scroll-strategy';
 
 @Component({
   selector: 'app-genotype',
@@ -61,11 +62,14 @@ export class GenotypeComponent implements OnInit {
     this.leaderMatcher.getLeaderMatchInfo(patient, [this.subject]).then(leaderMatchInfo => {
       leaderMatchInfo.forEach((subjectInfo: Object, index: number) => {
         Object.assign(this.subject, subjectInfo)
+        patient['sharedAllotype'] = subjectInfo['sharedAllotypePatient'];
+        this.subject['sharedAllotype'] = subjectInfo['sharedAllotypeDonor'];
         this.subject.rank = null;
         this.subject.loading = false;
       })
     }).catch(res => {
       console.log('TODO: Handle error response');
+      alert(`The back-end server for leader matching is currently down. If this persists, raise an issue at https://github.com/nmdp-bioinformatics/b-leader/issues.`)
       console.log(res);
     })
   }
