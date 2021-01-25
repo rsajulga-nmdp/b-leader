@@ -31,6 +31,7 @@ import { FileSaverService } from 'ngx-filesaver';
 export class ExportButtonComponent implements OnInit {
   @Input() patient: Subject[];
   @Input() donors: Subject[];
+  interrupted : boolean = false;
 
   constructor(private leaderMatchingService: LeaderMatchingService,
     private _FileSaverService: FileSaverService) { }
@@ -68,6 +69,13 @@ export class ExportButtonComponent implements OnInit {
                 this._getHiddenResults();
               }
             })
+          }).catch(res => {
+            if (!this.interrupted){
+              alert("The back-end server was interrupted." +
+                   " Any completed work will be exported.")
+              this._exportSheet();
+              this.interrupted = true;
+            }
           })
         return
       }
