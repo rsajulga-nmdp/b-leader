@@ -67,11 +67,13 @@ class LeaderMapper(object):
             hlaB_genotype_patient = genotype_patient['hla-b_genotype']
             hlaB_genotype_donor = genotype_donor['hla-b_genotype']
 
-            shared_leader = shared_allotype = leader_match_status = match_status = unshared_leader_patient = unshared_leader_donor = None
+            shared_leader = shared_allotype_patient = shared_allotype_donor = leader_match_status = None
+            match_status = unshared_leader_patient = unshared_leader_donor = None
             if index_shared is not None and match_code[index_shared] in ['A', 'P']:
                 shared_leader = (leader_genotype_patient[index_shared]  == leader_genotype_donor[index_shared] and
                                  leader_genotype_patient[index_shared] or 'X')
-                shared_allotype = hlaB_genotype_patient['name'].split('+')[index_shared]
+                shared_allotype_patient = hlaB_genotype_patient['name'].split('+')[index_shared]
+                shared_allotype_donor = hlaB_genotype_donor['name'].split('+')[index_shared]
                 unshared_leader_patient = leader_genotype_patient[index_unshared]
                 unshared_leader_donor = leader_genotype_donor[index_unshared]
                 match_status = (unshared_leader_patient == unshared_leader_donor and 
@@ -83,7 +85,8 @@ class LeaderMapper(object):
                             'hlaB_genotype_donor' : dict(match['genotype_donor']),
                             'leader_genotype_patient' : genotype_patient,
                             'leader_genotype_donor' : genotype_donor,
-                            'shared_allotype' : shared_allotype,
+                            'shared_allotype_patient' : shared_allotype_patient,
+                            'shared_allotype_donor' : shared_allotype_donor,
                              'shared_leader' : shared_leader,
                              'unshared_leader_patient' : unshared_leader_patient,
                              'unshared_leader_donor' : unshared_leader_donor,

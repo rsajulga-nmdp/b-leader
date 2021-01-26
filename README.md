@@ -1,4 +1,10 @@
 # HLA-B Leader Peptide Microservice and Tool
+
+The HLA-B Leader Assessment Tool (BLEAT) was developed, described, and validated by Sajulga et al., 2021 (*submitted for publication*) (*1*). BLEAT automates leader matching, as discovered by <a target="_blank" href="https://doi.org/10.1016/S2352-3026(19)30208-X" tabindex="-1">Petersdorf et al., 2020</a> (*2*).
+
+1. R. Sajulga, Y. Bolon, M. Maiers, E. W. Petersdorf, Assessment of *HLA-B* Genetic Variation with an HLA-B Leader Tool and Implications in Clinical Transplantation.
+2. E. W. Petersdorf, M. Carrington, C. O'HUigin, M. Bengtsson, D. De Santis, V. Dubois, T. Gooley, M. Horowitz, K. Hsu, J. A. Madrigal, M. J. Maiers, M. Malkki, C. McKallor, Y. Morishima, M. Oudshoorn, S. R. Spellman, J. Villard, P. Stevenson, T. International Histocompatibility Working Group in Hematopoietic Cell, <a target="_blank" href="https://doi.org/10.1016/S2352-3026(19)30208-X" tabindex="-1">Role of HLA-B exon 1 in graft-versus-host disease after unrelated haemopoietic cell transplantation: a retrospective cohort study</a>. *Lancet Haematol* **7**, e50-e60 (2020).
+
 This tool classifies the leader peptides (either M or T at position -21) and matching statuses of HLA-B alleles and ranks them based on outcome measures.
 
 # Table of Contents

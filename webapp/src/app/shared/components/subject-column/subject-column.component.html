@@ -17,9 +17,6 @@
 -- You should have received a copy of the GNU Lesser General Public License
 -- along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
-<app-subject-header
-    [subjects]="subjects">
-</app-subject-header>
 <div class="indicator-wrapper"
     *ngIf="sorting && subjects[0].type=='donor'">
     <img src="/assets/img/bar-loading-indicator.gif"
@@ -28,9 +25,10 @@
 <div class="content"
         (scroll)="onScroll($event)" #content>
     <app-subject-row
-        [ngStyle]="{'background-color' : i == selectIndex ? '#f3f7d4' : 
+        [ngStyle]="{'background-color' : i == selectIndex && ((type == 'donors' && patient?.length <= 1) ||
+                                                               (type == 'patient' && subjects.length <= 1)) ? '#f3f7d4' : 
                                          i % 2 ? 'white' : '#F1F4F6'}"
-        *ngFor="let subject of subjects.slice(0, 50); let i = index"
+        *ngFor="let subject of subjects.slice(0, limit); let i = index"
         [index]="i"
         [flippedPatient]="flippedPatient"
         [patient]="patient"
@@ -45,8 +43,15 @@
     <img
         src="/assets/img/add-button.png"
         tabindex="2"
-            *ngIf="type=='donors' || (type=='patient' && subjects.length > 1)"
+            *ngIf="(type=='donors' || (type=='patient' && subjects.length > 1))
+                    && subjects.length < limit"
             (click)="addSubject()">
+    <div class="spacer"
+        *ngIf="type=='donors' || (type=='patient' && subjects.length > 1)"> 
+            <div *ngIf="type == 'donors' == subjects.length >= limit">
+                There is a limit of  {{limit}}.
+            </div>
+    </div>
     <app-patient-panel
         *ngIf="type=='patient' && subjects.length <= 1"
         [selected]="selected"

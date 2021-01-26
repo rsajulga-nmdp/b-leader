@@ -21,6 +21,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Subject } from '@app/shared/models/subject/subject.model'
 import { LeaderClassificationService } from '@app/core/services/bleader/leaderClassification/leader-classification.service';
 import { Allotype } from '@app/shared/models/allotype/allotype.model';
+import { ImportService } from '@app/core/services/import/import.service';
 
 @Component({
   selector: 'app-allotype',
@@ -40,21 +41,25 @@ export class AllotypeComponent implements OnInit {
   leaderType: string;
   formValue: string;
   hsl: number[];
-  // initiated_call: boolean = false;
+  importing: boolean = false;
 
-  constructor(private leaderClassification: LeaderClassificationService) { }
+  constructor(private leaderClassification: LeaderClassificationService,
+              private importService : ImportService) { }
 
   ngOnInit() {
+    this.importService.importing.subscribe(importing => {
+      this.importing = importing;
+    })
   }
 
 
   getSharedIndex(){
-    if (this.patient && this.subject["sharedAllotype"]){
+    if (this.patient &&
+        this.subject["sharedAllotypeDonor"]){
       const donorAllotypes = this.subject.allotypes.map(a => a.hlaB);
       const patientAllotypes = this.patient.allotypes.map(a => a.hlaB);
-      const sharedAllotype = this.subject["sharedAllotype"].replace('B*','')
-      const donorSharedIndex = donorAllotypes.indexOf(sharedAllotype)
-      const patientSharedIndex = patientAllotypes.indexOf(sharedAllotype);
+      const donorSharedIndex = donorAllotypes.indexOf(this.subject["sharedAllotypeDonor"].replace('B*',''))
+      const patientSharedIndex = patientAllotypes.indexOf(this.subject["sharedAllotypePatient"].replace('B*',''));
       const sharedIndex = donorSharedIndex == patientSharedIndex ? donorSharedIndex :
                         donorSharedIndex + 10;
       return sharedIndex;
@@ -65,8 +70,11 @@ export class AllotypeComponent implements OnInit {
     this.formValue = $event;
     if (this._validInput($event)){
       this.allotype.hlaB = $event;
-      this._classifyLeaderType($event);
+      if (!this.importing){
+        this._classifyLeaderType($event);
+      }
       this.allotype.initiatedCall = true;
+      this.allotypeUpdated.emit();
     }
   }
 

@@ -78,6 +78,7 @@ export class ImportButtonComponent implements OnInit {
   styleUrls: ['./import-button.component.scss']
 })
 export class ImportDialogComponent implements OnInit {
+  limit: number;
   file: File;
 
   constructor(
@@ -87,6 +88,7 @@ export class ImportDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit() {
+    this.limit = this.importService.getLimit();
   }
 
   handleFileInput($event) {
@@ -97,6 +99,7 @@ export class ImportDialogComponent implements OnInit {
         skipEmptyLines : true,
         header: true,
         complete: (result) => {
+          this.importService.setAsImporting(true);
           this.data.dataRows = this.importService.parseRows(result['data']);
         }
       })

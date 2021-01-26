@@ -18,9 +18,27 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 :host {
+    border-top: 1px solid #b1b1b1;
     width: 100%;
     float: left;
     font-family: Arial;
+}
+
+
+:host.patient {
+    min-width: 310px;
+    width: 30.6%;
+    float: left;
+    border-bottom: 1px solid #9AA3A8;
+    border-left: 1px solid #9AA3A8;
+}
+
+:host.donors {
+    width: 49%;
+    min-width: 440px;
+    border-left: 1px solid #9AA3A8;
+    border-right: 1px solid #9AA3A8;
+    border-bottom: 1px solid #9AA3A8;
 }
 
 h3 {

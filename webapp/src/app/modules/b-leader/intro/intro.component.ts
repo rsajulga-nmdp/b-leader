@@ -17,20 +17,18 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
+@Component({
+  selector: 'app-intro',
+  templateUrl: './intro.component.html',
+  styleUrls: ['./intro.component.scss']
 })
-export class ScrollService {
-
-  private scrollSource = new BehaviorSubject<number>(0);
-  scroll = this.scrollSource.asObservable();
+export class IntroComponent implements OnInit {
 
   constructor() { }
 
-  changeScroll(scroll : number){
-    this.scrollSource.next(scroll);
+  ngOnInit() {
   }
+
 }

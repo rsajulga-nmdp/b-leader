@@ -20,6 +20,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from '@app/shared/models/subject/subject.model';
 import { SubjectsService } from '@app/core/services/subjects/subjects.service';
+import { BehaviorSubject } from 'rxjs';
 
 export class Row {
   donID : string;
@@ -38,8 +39,12 @@ export class ImportService {
   donors: Subject[];
   hlaHeaders : string[];
   idHeaders : string[];
+  importing : BehaviorSubject<boolean>;
+  limit : number = 100;
 
-  constructor(private subjectsService: SubjectsService) { }
+  constructor(private subjectsService: SubjectsService) {
+    this.importing = new BehaviorSubject(false);
+  }
 
   formatSubjects(rows : Row[], patient : Subject[], donors : Subject[]) {
     let donGenotypes = [];
@@ -90,5 +95,13 @@ export class ImportService {
     }
     this.hlaHeaders.reverse();
     this.idHeaders.reverse();
+  }
+
+  setAsImporting(importing: boolean){
+    this.importing.next(importing);
+  }
+
+  getLimit(){
+    return this.limit;
   }
 }

@@ -42,7 +42,7 @@ Feature: Determine HLA-B Leader Match Status
             |     PP     | B*07+B*07    | B*07+B*07       |   invalid    |
             |     LP     | B*14:03+B*07 | B*14:01+B*07:02 |     MMM      |
             |     MP     | B*07+B*15    | B*42+B*15       |     MMT      |
-            |     AP     | B*27:05/37+B*44:05/55 | B*27:05/37+B*44:02/55 | TTT |
+            # |     AP     | B*27:05/37+B*44:05/55 | B*27:05/37+B*44:02/55 | TTT |
 
         Examples: Single/Double Allele Genotype Mismatch
             | Match Code  | Genotype 1      | Genotype 2      | Match Status |

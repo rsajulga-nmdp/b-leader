@@ -22,6 +22,7 @@ import { Subject } from '@app/shared/models/subject/subject.model';
 import { LeaderMatchingService } from '@app/core/services/bleader/leaderMatching/leader-matching.service';
 import * as XLSX from 'xlsx';
 import { FileSaverService } from 'ngx-filesaver';
+import { ImportService } from '@app/core/services/import/import.service';
 
 @Component({
   selector: 'app-export-button',
@@ -31,9 +32,11 @@ import { FileSaverService } from 'ngx-filesaver';
 export class ExportButtonComponent implements OnInit {
   @Input() patient: Subject[];
   @Input() donors: Subject[];
+  interrupted : boolean = false;
 
   constructor(private leaderMatchingService: LeaderMatchingService,
-    private _FileSaverService: FileSaverService) { }
+    private _FileSaverService: FileSaverService,
+    private importService: ImportService) { }
 
   ngOnInit() {
   }
@@ -43,7 +46,7 @@ export class ExportButtonComponent implements OnInit {
   }
 
   export() {
-    if (this.patient.length > 1 && this.donors.length > 10){
+    if (this.patient.length > 1 && this.importService.getLimit() == this.numAnnotatedDonors()){
       this._getHiddenResults();
     } else {
       this._exportSheet();
@@ -68,6 +71,13 @@ export class ExportButtonComponent implements OnInit {
                 this._getHiddenResults();
               }
             })
+          }).catch(res => {
+            if (!this.interrupted){
+              alert("The back-end server was interrupted." +
+                   " Any completed work will be exported.")
+              this._exportSheet();
+              this.interrupted = true;
+            }
           })
         return
       }

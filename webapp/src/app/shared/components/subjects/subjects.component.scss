@@ -22,8 +22,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
     height: 95vh;
     padding: 20px 40px;
     padding-top: 0px;
-    min-width: 760px;
-    max-width: 760px;
+    min-width: 753px;
+    max-width: 753px;
     margin: 0px calc(50vw - 425px);
     float: left;
+}
+
+.content {
+    float: left;
+    width: 100%;
+    height: calc(95vh - (48px + 91px));
+    overflow: auto;
+    border-bottom: 1px solid #9AA3A8;
+    scroll-snap-type: y mandatory;
+    scroll-snap-points-y: repeat(81px);
 }

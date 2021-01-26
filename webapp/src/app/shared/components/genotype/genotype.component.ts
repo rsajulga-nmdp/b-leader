@@ -20,6 +20,8 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subject } from '@app/shared/models/subject/subject.model'
 import { LeaderMatchingService } from '@app/core/services/bleader/leaderMatching/leader-matching.service';
+import { getMatScrollStrategyAlreadyAttachedError } from '@angular/cdk/overlay/typings/scroll/scroll-strategy';
+import { ImportService } from '@app/core/services/import/import.service';
 
 @Component({
   selector: 'app-genotype',
@@ -40,7 +42,8 @@ export class GenotypeComponent implements OnInit {
   @Input() selectIndex: number;
   @Output() initiatedMatching = new EventEmitter();
 
-  constructor(private leaderMatcher: LeaderMatchingService) { }
+  constructor(private leaderMatcher: LeaderMatchingService,
+    private importService: ImportService) { }
 
   ngOnInit() {
   }
@@ -59,13 +62,18 @@ export class GenotypeComponent implements OnInit {
   private _retrieveLeaderMatchingResults() {
     let patient = this.patient.length == 1 ? this.patient[0] : this.patient[this.index];
     this.leaderMatcher.getLeaderMatchInfo(patient, [this.subject]).then(leaderMatchInfo => {
+      this.importService.setAsImporting(false);
       leaderMatchInfo.forEach((subjectInfo: Object, index: number) => {
         Object.assign(this.subject, subjectInfo)
+        this.leaderMatcher.assignLeaders(patient, subjectInfo['leaderPatient']);
+        this.leaderMatcher.assignLeaders(this.subject, subjectInfo['leaderDonor']);
+        this.subject['sharedAllotype'] = subjectInfo['sharedAllotypeDonor'];
         this.subject.rank = null;
         this.subject.loading = false;
       })
     }).catch(res => {
       console.log('TODO: Handle error response');
+      alert(`The back-end server for leader matching is currently down. If this persists, raise an issue at https://github.com/nmdp-bioinformatics/b-leader/issues.`)
       console.log(res);
     })
   }

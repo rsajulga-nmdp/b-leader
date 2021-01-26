@@ -44,9 +44,12 @@ export class LeaderMatchingService {
                   'hlaBMatch' : subjectInfo['hlaB_genotype_match'] ?
                                   subjectInfo['hlaB_genotype_match'].split('') :
                                   ['NA','NA','NA'],
+                  'leaderPatient' : subjectInfo['leader_genotype_patient'],
+                  'leaderDonor' : subjectInfo['leader_genotype_donor'],
                   'leaderGenotypePatient' : subjectInfo['leader_genotype_patient']['leader_genotype'],  
                   'leaderGenotypeDonor' : subjectInfo['leader_genotype_donor']['leader_genotype'],  
-                  'sharedAllotype' : subjectInfo['shared_allotype'],
+                  'sharedAllotypePatient' : subjectInfo['shared_allotype_patient'],
+                  'sharedAllotypeDonor' : subjectInfo['shared_allotype_donor'],
                   'flippedPatient' : subjectInfo['hlaB_genotype_patient'].flip_matched != subjectInfo['hlaB_genotype_patient'].flip_sorted,
                   'flippedDonor' : subjectInfo['hlaB_genotype_donor'].flip_matched != subjectInfo['hlaB_genotype_donor'].flip_sorted,
                   'rank' : subjectInfo['rank'],
@@ -57,6 +60,22 @@ export class LeaderMatchingService {
           return results;
         });
       })
+  }
+
+  assignLeaders(subject: Subject, leaderInfo: Object) {
+    leaderInfo['hla-b_allotype_one']
+    const indices = ['one', 'two'];
+    indices.forEach(index => {
+      const allotype_res = leaderInfo['hla-b_allotype_' + index]
+      const allele = allotype_res['hla-b_allotype']['name'];
+      const allotypes_sub = subject.allotypes.filter(a => a['hlaB'] == allele.replace('B*',''));
+      allotypes_sub.forEach(allo => {
+        allo.leader = allotype_res['common_leader'];
+        allo.exceptions = allotype_res['exceptions'];
+        allo.unknowns = allotype_res['unknowns'];
+        allo.known = allotype_res['known'];
+      })
+    })
   }
 
   private _formatInput(patient: Subject, donors: Subject[]) {
