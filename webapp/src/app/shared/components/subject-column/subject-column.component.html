@@ -43,8 +43,15 @@
     <img
         src="/assets/img/add-button.png"
         tabindex="2"
-            *ngIf="type=='donors' || (type=='patient' && subjects.length > 1)"
+            *ngIf="(type=='donors' || (type=='patient' && subjects.length > 1))
+                    && subjects.length < limit"
             (click)="addSubject()">
+    <div class="spacer"
+        *ngIf="type=='donors' || (type=='patient' && subjects.length > 1)"> 
+            <div *ngIf="type == 'donors' == subjects.length >= limit">
+                There is a limit of  {{limit}}.
+            </div>
+    </div>
     <app-patient-panel
         *ngIf="type=='patient' && subjects.length <= 1"
         [selected]="selected"

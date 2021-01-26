@@ -45,7 +45,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 img {
     margin: 20px;
-    margin-bottom: 100vh;
+}
+
+.spacer {
+    height: calc(100vh - 30px);
+    float: left;
+    width: 100%;
+    text-align: center;
+    color: gray;
+    font-size: 10px;
+    margin-top: 30px;
 }
 
 .content {
