@@ -53,7 +53,8 @@
         [type]="'donors'"
         [sorting]="sorting"
         class="donors"
-        [ngClass]="{'single-patient' : patient.length <= 1}"
+        [ngClass]="{'single-patient' : patient.length <= 1,
+                    'multiple-patients' : patient.length > 1}"
         (notifyMovedPatientGenotype)="movePatientGenotype($event)"
         (deletedSubject)="stashSubject($event)"
         (changeRow)="assignSelected($event)"
