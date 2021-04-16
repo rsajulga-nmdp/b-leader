@@ -31,7 +31,6 @@ export class LeaderMatchingService {
   constructor(private httpClient: HttpClient) { }
 
   getLeaderMatchInfo(patient: Subject, donors: Subject[]): Promise<any> {
-    // console.log(this._formatInput(patient, donors));
     return this.httpClient.post(this.baseURL, this._formatInput(patient, donors))
       .toPromise()
       .then((res: Object[]) => {

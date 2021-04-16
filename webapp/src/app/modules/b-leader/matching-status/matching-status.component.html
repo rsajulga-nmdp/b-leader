@@ -18,11 +18,20 @@
 -- along with this program. If not, see <http://www.gnu.org/licenses/>.
 -->
 <div class="leaderMatch">
-    <div *ngIf="subject.leaderMatch[0] != ''">
-        <p>{{ subject.leaderMatch.join("") }}</p>
-        <p>{{ ['M', 'T'].indexOf(subject.leaderMatch[0]) >= 0 ?
+    <div *ngIf="subject.leaderMatch[0].trim() != ''"
+        class="leaderMatchStatus">
+        <div *ngFor="let leaderMatchCode of subject.leaderMatch; let i = index"
+            class="leaderBlocks">
+            <app-leader-match-block
+                [initiatedMatching]="initiatedMatching"
+                [leaderMatch]="leaderMatchCode"
+                [index]="i">
+            </app-leader-match-block>
+        </div>
+        <div class="leaderDescription">
+            {{ ['M', 'T'].indexOf(subject.leaderMatch[0]) >= 0 ?
                 subject.leaderMatch[0] == subject.leaderMatch[1] ? 'Leader match' : 'Leader mismatch'
-                : '' }}</p>
+                : '' }}</div>
     </div>
 </div>
 <div class="hlaBmatch">

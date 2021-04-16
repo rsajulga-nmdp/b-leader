@@ -32,7 +32,7 @@
       </div>
   </div>
   <div class="matching-status"
-      *ngIf="subjects[0].type=='donor'">
+      *ngIf="subjects.length && subjects[0].type=='donor'">
             <div class="header" id="typing">
                 <div class="top-header">Matching Status</div>
                 <div class="subheaders">

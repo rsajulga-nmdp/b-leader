@@ -27,6 +27,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class LeaderMatchBlockComponent implements OnInit {
   @Input() leaderMatch: string;
   @Input() initiatedMatching: boolean;
+  @Input() index: number;
 
   constructor() { }
 

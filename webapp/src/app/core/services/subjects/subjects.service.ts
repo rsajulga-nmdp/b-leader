@@ -58,7 +58,8 @@ export class SubjectsService {
     // this.removeEmptySubjects(patient);
     // this.removeEmptySubjects(donors);
     this.addGenotypes(["B*07:02+B*40:02"], patient);
-    this.addGenotypes(["B*07:XX+B*40:02",
+    this.addGenotypes([
+      // "B*07:XX+B*40:02",
                       "B*07:02+B*35:01",
                       "B*08:BETY+B*40:02:01G",
                       "B*14:01+B*40:04",
@@ -76,11 +77,21 @@ export class SubjectsService {
   addGenotypes(genotypes: string[], subjects: Subject[]) {
     const type = subjects[0].type;
     this.removeEmptySubjects(subjects);
-    const existingNum = subjects.length;
-    this.addEmptySubjects(subjects, type, genotypes.length);
-    genotypes.forEach((genotype: string, index: number) => {
-      subjects[existingNum + index].setHlaBAllotypes(this._formatGenotypes(genotype));
-    })
+    if (genotypes.length){
+      const existingNum = subjects.length;
+      this.addEmptySubjects(subjects, type, genotypes.length);
+      genotypes.forEach((genotype: string, index: number) => {
+        subjects[existingNum + index].setHlaBAllotypes(this._formatGenotypes(genotype));
+      });
+    } else {
+      this.addEmptySubjects(subjects, type, 1);
+    }
+  }
+
+  addIDs(ids : string[], subjects: Subject[]) {
+    for (let i = 0; i < ids.length; i++){
+      subjects[i].id = ids[i];
+    }
   }
 
   private _formatGenotypes(genotype: string): string[]{

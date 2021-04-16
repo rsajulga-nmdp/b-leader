@@ -31,43 +31,23 @@ export class PatientPanelComponent implements OnInit {
   @Input() selected: number;
   categories : Object = {'MT' : 
                             [{leader_match_status : 'MMT',
-                              leader_match : 'Leader-matched',
-                              hla_match : 'Allele mismatch'},
-                            {leader_match_status : 'MMT',
-                              leader_match : 'Leader-matched',
-                              hla_match : 'Antigen mismatch'},
+                              leader_match : 'Leader matched'},
                             {leader_match_status : 'TTM',
-                              leader_match : 'Leader-matched',
-                              hla_match : 'Allele mismatch'},
-                            {leader_match_status : 'TTM',
-                              leader_match : 'Leader-matched',
-                              hla_match : 'Antigen mismatch'},
+                              leader_match : 'Leader matched'},
                             {leader_match_status : 'MTT',
-                              leader_match : 'Leader mismatch',
-                              hla_match : ''},
+                              leader_match : 'Leader mismatched'},
                             {leader_match_status : 'TMM',
-                              leader_match : 'Leader mismatch',
-                              hla_match : ''}],
+                              leader_match : 'Leader mismatched'}],
                           'TT' :
                             [{leader_match_status : 'TTT',
-                              leader_match : 'Leader-matched',
-                              hla_match : 'Allele mismatch'},
-                            {leader_match_status : 'TTT',
-                              leader_match : 'Leader-matched',
-                              hla_match : 'Antigen mismatch'},
+                              leader_match : 'Leader matched'},
                             {leader_match_status : 'TMT',
-                              leader_match : 'Leader mismatch',
-                              hla_match : 'Allele mismatch'},
-                            {leader_match_status : 'TMT',
-                              leader_match : 'Leader mismatch',
-                              hla_match : 'Antigen mismatch'}],
+                              leader_match : 'Leader mismatched'}],
                           'MM' :
                             [{leader_match_status : 'MMM',
-                              leader_match : 'Leader-matched',
-                              hla_match : 'Allele mismatch'},
-                            {leader_match_status : 'MMM',
-                              leader_match : 'Leader-matched',
-                              hla_match : 'Antigen mismatch'}]
+                              leader_match : 'Leader matched'},
+                            {leader_match_status : 'MTM',
+                              leader_match : 'Leader mismatched'}]
 };
 
   constructor() { }

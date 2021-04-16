@@ -23,11 +23,13 @@
                   'M' : leaderMatch == 'M',
                   'X' : leaderMatch == 'X',
                  'loading': initiatedMatching && leaderMatch == ''}"
-    matTooltip="This is simple Tooltip"
     [matTooltipPosition]="'right'"
-    matTooltip="{{leaderMatch == 'T' ? 'Threonine' :
-                  leaderMatch == 'M' ? 'Methionine' :
-                  leaderMatch == 'X' ? 'Indeterminate leader peptide type' : ''}}">
+    matTooltip="{{index == 0 ? 'The patient\'s P2 of the unshared HLA-B allele is a' :
+                  index == 1 ? 'The donor\'s P2 of the unshared HLA-B allele is a' :
+                  index == 2 ? 'The P2 alleles of both HLA-B shared alleles are both' : ''}}
+                  {{leaderMatch == 'T' ? 'threonine' :
+                    leaderMatch == 'M' ? 'methionine' :
+                    leaderMatch == 'X' ? 'Leader ' : ''}}">
         <img src="/assets/img/loading-indicator.gif"
             *ngIf="initiatedMatching && leaderMatch == ''"
             width="10px">

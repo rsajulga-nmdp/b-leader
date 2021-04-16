@@ -40,7 +40,7 @@
             <br>
         </div>
         <div *ngIf="allotype.exceptions" style="color: red">
-            <p>Potential minor allele exceptions</p>
+            <p>Potential rare, minor allele exceptions</p>
                   {{allotype.exceptions.length > 20 ?
                         allotype.exceptions.slice(0, 20).join(', ') + '...' :
                         allotype.exceptions.join(', ')}}

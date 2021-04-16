@@ -65,7 +65,7 @@ export class ImportButtonComponent implements OnInit {
 
   private _setSubjects() {
     this.importService.formatSubjects(this.dataRows, this.patient, this.donors);
-    if (this.patient.length == 1){
+    if (this.patient.length == 1 && this.patient[0].allotypes[0].hlaB != ""){
       this.sortList.emit();
     }
   }
@@ -97,10 +97,13 @@ export class ImportDialogComponent implements OnInit {
     reader.onload = () => {
       this.papa.parse(reader.result.toString(), {
         skipEmptyLines : true,
-        header: true,
+        // header: true,
         complete: (result) => {
-          this.importService.setAsImporting(true);
           this.data.dataRows = this.importService.parseRows(result['data']);
+          let hasPatient = this.data.dataRows[0].hasOwnProperty('patHlaB1');
+          if (hasPatient){
+            this.importService.setAsImporting(true);
+          }
         }
       })
     };
