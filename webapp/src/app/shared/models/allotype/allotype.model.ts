@@ -25,6 +25,8 @@ export class Allotype {
     unknowns: string[];
     known: string[];
     initiatedCall: boolean;
+    sharedAllotype: boolean;
+    highlighted: boolean;
     
     constructor(hlaBallotype: string) {
         this.hlaB = hlaBallotype;

@@ -69,11 +69,7 @@ export class GenotypeComponent implements OnInit {
       this.importService.setAsImporting(false);
       leaderMatchInfo.forEach((subjectInfo: Object, index: number) => {
         Object.assign(this.subject, subjectInfo)
-        this.leaderMatcher.assignLeaders(patient, subjectInfo['leaderPatient']);
-        this.leaderMatcher.assignLeaders(this.subject, subjectInfo['leaderDonor']);
-        this.subject['sharedAllotype'] = subjectInfo['sharedAllotypeDonor'];
-        this.subject.rank = null;
-        this.subject.loading = false;
+        this.leaderMatcher.assignResults(patient, this.subject, subjectInfo);
       })
     }).catch(res => {
       console.log('TODO: Handle error response');

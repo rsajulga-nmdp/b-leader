@@ -31,10 +31,8 @@
     [movedPatientGenotype]="movedPatientGenotype && subject.type=='patient'"
     [ngClass]="{'transparent' : selected && subject.type=='donor' && movedPatientGenotype,
                 'editing' : formValue != allotype.hlaB,
-                'sharedAllotype1' : index == 0 && (getSharedIndex() == index || subject.type == 'patient'),
-                'sharedAllotype2' : index == 1 && (getSharedIndex() == index || subject.type == 'patient'),
-                'sharedAllotype1Flipped' : index == 0 && (getSharedIndex() - 10 == index && subject.type == 'donor'),
-                'sharedAllotype2Flipped' : index == 1 && (getSharedIndex() - 10 == index && subject.type == 'donor')}"
+                'sharedAllotype1' : (index == 0 && subject.type == 'patient') || allotype.sharedIndex == 0,
+                'sharedAllotype2' : (index == 1 && subject.type == 'patient') || allotype.sharedIndex == 1}"
     [transparent]="selected && subject.type=='donor' && movedPatientGenotype"
     [allotype]="allotype"
     (hlaBinput)="updateHlaBLeader($event)"

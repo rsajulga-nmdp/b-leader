@@ -21,6 +21,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from '@app/shared/models/subject/subject.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from "../../../../../environments/environment";
+import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -61,9 +62,11 @@ export class LeaderMatchingService {
       })
   }
 
-  assignLeaders(subject: Subject, leaderInfo: Object) {
-    leaderInfo['hla-b_allotype_one']
+  assignLeaders(subject: Subject, subjectInfo: Object, label : string) {
     const indices = ['one', 'two'];
+    const leaderInfo = subjectInfo['leader' + label];
+    const sharedAllotype = subjectInfo['sharedAllotype' + label];
+    const sharedAllotypePatient = label == 'Donor' ? subjectInfo['sharedAllotypePatient'] : null;
     indices.forEach(index => {
       const allotype_res = leaderInfo['hla-b_allotype_' + index]
       const allele = allotype_res['hla-b_allotype']['name'];
@@ -73,8 +76,32 @@ export class LeaderMatchingService {
         allo.exceptions = allotype_res['exceptions'];
         allo.unknowns = allotype_res['unknowns'];
         allo.known = allotype_res['known'];
+        if (allele == sharedAllotype){
+          if (sharedAllotypePatient){
+            const patientGenotype = indices.map(i => subjectInfo['leaderPatient']['hla-b_genotype']['allotype_' + i].name);
+            if (subjectInfo['flippedPatient']){
+              patientGenotype.reverse();
+            }
+            console.log(patientGenotype, sharedAllotypePatient);
+            console.log(subjectInfo);
+            allo.sharedIndex = patientGenotype.indexOf(sharedAllotypePatient);
+          }
+        }
       })
     })
+  }
+
+  // assignSharedAllotype(patient : Subject, donor : Subject, leaderInfo : Object){
+    
+  // }
+
+  assignResults(patient: Subject, donor : Subject, leaderInfo :  Object){
+    this.assignLeaders(patient, leaderInfo, 'Patient');
+    this.assignLeaders(donor, leaderInfo, 'Donor');
+    // this.assignSharedAllotype(patient, donor, leaderInfo);
+    donor['sharedAllotype'] = leaderInfo['sharedAllotypeDonor'];
+    donor.rank = null;
+    donor.loading = false;
   }
 
   private _formatInput(patient: Subject, donors: Subject[]) {
