@@ -20,6 +20,7 @@
 export class Allotype {
 
     hlaB : string;
+    submittedHlaB: string;
     leader : string;
     exceptions: string[];
     unknowns: string[];

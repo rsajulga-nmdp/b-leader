@@ -45,6 +45,7 @@
         tabindex="2"
             *ngIf="(type=='donors' || (type=='patient' && subjects.length > 1))
                     && subjects.length < limit"
+            (keyup.enter)="addSubject()"
             (click)="addSubject()">
     <div class="spacer"
         *ngIf="type=='donors' || (type=='patient' && subjects.length > 1)"> 

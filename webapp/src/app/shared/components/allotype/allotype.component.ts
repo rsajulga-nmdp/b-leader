@@ -86,6 +86,7 @@ export class AllotypeComponent implements OnInit {
     let classification = this.leaderClassification.classifyLeaderType(allele);
     if (classification){
       classification.then(leaderInfo => {
+        this.allotype.submittedHlaB = allele;
         this.allotype.leader = leaderInfo['common_leader'];
         this.allotype.exceptions = leaderInfo['exceptions'];
         this.allotype.unknowns = leaderInfo['unknowns'];

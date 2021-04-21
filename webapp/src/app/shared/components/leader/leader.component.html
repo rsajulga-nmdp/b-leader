@@ -26,9 +26,9 @@
      [ngbTooltip]="tooltipContent"
      container="body">
      <img src="/assets/img/loading-indicator.gif"
-            *ngIf="allotype.initiatedCall && leaderType == ''"
+            *ngIf="allotype.initiatedCall && allotype.submittedHlaB != allotype.hlaB"
             width="10px">
-      {{leaderType}}
+      {{allotype.submittedHlaB == allotype.hlaB ? leaderType : ''}}
 </div>
 <ng-template #tooltipContent>
     <div *ngIf="allotype.leader" class="tooltip">
