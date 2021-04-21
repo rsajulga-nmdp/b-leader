@@ -28,7 +28,7 @@
                     matchCode == 'P' ? 'Potential match' :
                     matchCode == 'L' ? 'Allele mismatch' :
                     matchCode == 'M' ? 'Antigen mismatch' : ''}}"
-    [matTooltipPosition]="'left'"
+    [matTooltipPosition]="'above'"
     aria-label="HLA match categories">
         <img src="/assets/img/loading-indicator.gif"
         *ngIf="initiatedMatching && matchCode == ''"

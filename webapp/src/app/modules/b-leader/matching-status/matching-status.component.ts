@@ -35,4 +35,17 @@ export class MatchingStatusComponent implements OnInit {
   ngOnInit() {
   }
 
+  getAllotypes(index : number){
+    const donorAllotype = this.subject.allotypes.filter(a => a.sharedIndex != null)[0];
+    const sharedIndex = donorAllotype.sharedIndex;
+    if (index == 0){
+      return [this.patient[0].allotypes[1 - sharedIndex]];
+    } else if (index == 1){
+      return this.subject.allotypes.filter(a => a.sharedIndex == null);
+    } else {
+      return this.subject.allotypes.filter(a => a.sharedIndex != null)
+              .concat(this.patient[0].allotypes[sharedIndex]);
+    }
+  }
+
 }

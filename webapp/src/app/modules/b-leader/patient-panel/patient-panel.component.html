@@ -38,16 +38,11 @@ Donor Selection Order Guidelines</h4>
                  class="donor-category"
                  [ngClass]="{highlighted : 
                     category['leader_match_status'] == donors[selected].leaderMatch.join('') 
-                    && (category['hla_match'] == '' ||
-                        ((category['hla_match'] == 'Allele mismatch' &&
-                        donors[selected].hlaBMatch.indexOf('L') >= 0) ||
-                       (category['hla_match'] == 'Antigen mismatch' &&
-                        donors[selected].hlaBMatch.indexOf('M') >= 0)))
                    }">
                     <div class="leader-match">{{ category['leader_match_status'] }}</div>
                     <div class="match-details">
                         <p>{{ category['leader_match'] }}</p>
-                        <p>{{ category ['hla_match'] }}</p>
+                        <p>{{ category['leader_match_status'][2] + ' on shared allotype' }}</p>
                     </div>
             </div>
 </div>

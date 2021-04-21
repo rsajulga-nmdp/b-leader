@@ -19,17 +19,22 @@
 -->
 <button mat-raised-button
     class="matchBlock"
-    [ngClass] = "{'T' : leaderMatch == 'T',
-                  'M' : leaderMatch == 'M',
-                  'X' : leaderMatch == 'X',
+    [ngClass] = "{'T' : allotypes.length && allotypes[0].leader == 'T',
+                  'M' : allotypes.length && allotypes[0].leader == 'M',
+                  'X' : allotypes.length && allotypes[0].leader == 'X',
                  'loading': initiatedMatching && leaderMatch == ''}"
-    matTooltip="This is simple Tooltip"
-    [matTooltipPosition]="'right'"
-    matTooltip="{{leaderMatch == 'T' ? 'Threonine' :
-                  leaderMatch == 'M' ? 'Methionine' :
-                  leaderMatch == 'X' ? 'Indeterminate leader peptide type' : ''}}">
+    [matTooltipPosition]="'above'"
+    matTooltip="{{index == 0 ? 'The patient\'s P2 of the unshared HLA-B allele is ' :
+                  index == 1 ? 'The donor\'s P2 of the unshared HLA-B allele is ' :
+                  index == 2 ? 'The P2 alleles of both HLA-B shared alleles are both' : ''}}
+                  {{allotypes.length && allotypes[0].leader == 'T' ? 'threonine' :
+                    allotypes.length && allotypes[0].leader == 'M' ? 'methionine' :
+                    allotypes.length && allotypes[0].leader == 'X' ? 'unknown' : ''}}"
+    (mouseover)="highlightAllotype(true)"
+    (mouseout)="highlightAllotype(false)">
         <img src="/assets/img/loading-indicator.gif"
-            *ngIf="initiatedMatching && leaderMatch == ''"
+            *ngIf="initiatedMatching && allotypes.length && allotypes[0].hlaB != allotypes[0].submittedHlaB"
             width="10px">
-        {{leaderMatch}}
+        <!-- {{leaderMatch}} -->
+        {{allotypes[0].hlaB == allotypes[0].submittedHlaB && allotypes.length ? allotypes[0].leader : ''}}
 </button>

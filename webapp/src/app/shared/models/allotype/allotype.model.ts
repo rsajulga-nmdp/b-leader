@@ -20,16 +20,20 @@
 export class Allotype {
 
     hlaB : string;
+    submittedHlaB: string;
     leader : string;
     exceptions: string[];
     unknowns: string[];
     known: string[];
     initiatedCall: boolean;
+    sharedIndex: number;
+    highlighted: boolean;
     
     constructor(hlaBallotype: string) {
         this.hlaB = hlaBallotype;
         this.leader = '';
         this.initiatedCall = false;
+        this.highlighted = false;
     }
 
 }

@@ -34,10 +34,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
     border-radius: 10%;
     text-align: center;
     line-height: 10px;
-    background-color: grey;
+    background-color: white;
 }
 
-.T { background-color: $SECONDARY_BLUE;}
-.M { background-color: $SECONDARY_GREEN;}
+.matchBlock:hover {
+    background-color: lightsalmon;
+}
+
+.T { border-color: $T_LEADER;}
+.M { border-color: $M_LEADER;}
 
 .loading { background-color: white;}

@@ -41,6 +41,7 @@ export class GenotypeComponent implements OnInit {
   @Input() movedPatientGenotype: boolean;
   @Input() selectIndex: number;
   @Output() initiatedMatching = new EventEmitter();
+  errored : boolean = false;
 
   constructor(private leaderMatcher: LeaderMatchingService,
     private importService: ImportService) { }
@@ -51,7 +52,7 @@ export class GenotypeComponent implements OnInit {
   checkBothAllotypes() {
     if (this.subject.allotypes.map(allo => allo.hlaB)
     .every(allo => allo != "")){
-      if (this.subject.type == 'donor'){
+      if (this.subject.type == 'donor' && this.patient[0].allotypes[0].hlaB != ""){
         this.subject.loading = true;
         this._retrieveLeaderMatchingResults()
         this.initiatedMatching.emit()
@@ -61,19 +62,21 @@ export class GenotypeComponent implements OnInit {
   
   private _retrieveLeaderMatchingResults() {
     let patient = this.patient.length == 1 ? this.patient[0] : this.patient[this.index];
+    if (patient.allotypes[0].hlaB == ""){ return }
+
+    const component = this;
     this.leaderMatcher.getLeaderMatchInfo(patient, [this.subject]).then(leaderMatchInfo => {
       this.importService.setAsImporting(false);
       leaderMatchInfo.forEach((subjectInfo: Object, index: number) => {
         Object.assign(this.subject, subjectInfo)
-        this.leaderMatcher.assignLeaders(patient, subjectInfo['leaderPatient']);
-        this.leaderMatcher.assignLeaders(this.subject, subjectInfo['leaderDonor']);
-        this.subject['sharedAllotype'] = subjectInfo['sharedAllotypeDonor'];
-        this.subject.rank = null;
-        this.subject.loading = false;
+        this.leaderMatcher.assignResults(patient, this.subject, subjectInfo);
       })
     }).catch(res => {
       console.log('TODO: Handle error response');
-      alert(`The back-end server for leader matching is currently down. If this persists, raise an issue at https://github.com/nmdp-bioinformatics/b-leader/issues.`)
+      if (!component.errored){
+        // alert(`The back-end server for leader matching is currently down. If this persists, raise an issue at https://github.com/nmdp-bioinformatics/b-leader/issues.`)
+        component.errored = true;
+      } 
       console.log(res);
     })
   }

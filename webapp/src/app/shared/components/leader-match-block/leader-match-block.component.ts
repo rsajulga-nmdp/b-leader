@@ -18,6 +18,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import { Component, OnInit, Input } from '@angular/core';
+import { Allotype } from '@app/shared/models/allotype/allotype.model';
 
 @Component({
   selector: 'app-leader-match-block',
@@ -27,10 +28,16 @@ import { Component, OnInit, Input } from '@angular/core';
 export class LeaderMatchBlockComponent implements OnInit {
   @Input() leaderMatch: string;
   @Input() initiatedMatching: boolean;
+  @Input() index: number;
+  @Input() allotypes: Allotype[];
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  highlightAllotype(highlight : boolean){
+    this.allotypes.forEach(a => a.highlighted = highlight);
   }
 
 }

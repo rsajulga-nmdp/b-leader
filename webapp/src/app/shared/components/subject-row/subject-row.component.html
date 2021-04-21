@@ -31,8 +31,6 @@
     <app-genotype
         [index]="index"
         [ngClass]="{'move-to-donor' : subject.type=='patient' && movedPatientGenotype}"
-        [ngStyle]="{'left' : (subject.type=='patient' && movedPatientGenotype ? '294' : '0') + 'px',
-                    'top' : (subject.type=='patient' && movedPatientGenotype ? '0' : '0') + 'px'}"
         [movedPatientGenotype]="movedPatientGenotype"
         [flippedPatient]="flippedPatient"
         [patient]="patient"

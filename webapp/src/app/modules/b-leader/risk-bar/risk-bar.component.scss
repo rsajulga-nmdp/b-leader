@@ -24,21 +24,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 }
 
 #arrow {
-    height: 340px;
+    height: 215px;
     width: 100%;
     float: left;
 }
 
 #left {
     height: 10px;
-    top: 317px;
+    top: 197px;
     left: 13px;
     transform: rotate(-45deg);
 }
 
 #right{
     height: 10px;
-    top: 305px;
+    top: 185px;
     left: 23px;
     transform: rotate(45deg);
 }
@@ -46,7 +46,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #spine {
     left: 18px;
     top: -10px;
-    height: 312px;
+    height: 192px;
 }
 
 .line {
