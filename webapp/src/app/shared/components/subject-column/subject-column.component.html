@@ -23,6 +23,7 @@
             class="loading-indicator">
 </div>
 <div class="content"
+        [ngClass]="{'multiple-patients' : type == 'patient' && subjects.length > 1}"
         (scroll)="onScroll($event)" #content>
     <app-subject-row
         [ngStyle]="{'background-color' : i == selectIndex && ((type == 'donors' && patient?.length <= 1) ||
