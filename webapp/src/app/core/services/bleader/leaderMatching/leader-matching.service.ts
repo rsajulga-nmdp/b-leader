@@ -71,19 +71,20 @@ export class LeaderMatchingService {
       const allotype_res = leaderInfo['hla-b_allotype_' + index]
       const allele = allotype_res['hla-b_allotype']['name'];
       const allotypes_sub = subject.allotypes.filter(a => a['hlaB'] == allele.replace('B*',''));
+      let assigned = false;
       allotypes_sub.forEach(allo => {
         allo.leader = allotype_res['common_leader'];
         allo.exceptions = allotype_res['exceptions'];
         allo.unknowns = allotype_res['unknowns'];
         allo.known = allotype_res['known'];
         if (allele == sharedAllotype){
-          if (sharedAllotypePatient){
+          if (sharedAllotypePatient && !assigned){
             const patientGenotype = indices.map(i => subjectInfo['leaderPatient']['hla-b_genotype']['allotype_' + i].name);
             if (subjectInfo['flippedPatient']){
               patientGenotype.reverse();
             }
             allo.sharedIndex = patientGenotype.indexOf(sharedAllotypePatient);
-            sharedAllotypePatient = null;
+            assigned = true;
           } else {
             allo.sharedIndex = null;
           }
