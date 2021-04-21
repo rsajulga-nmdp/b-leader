@@ -67,6 +67,9 @@ export class LeaderMatchingService {
     const leaderInfo = subjectInfo['leader' + label];
     const sharedAllotype = subjectInfo['sharedAllotype' + label];
     const sharedAllotypePatient = label == 'Donor' ? subjectInfo['sharedAllotypePatient'] : null;
+    subject.allotypes.forEach(allo => {
+      allo.submittedHlaB = allo.hlaB;
+    })
     indices.forEach(index => {
       const allotype_res = leaderInfo['hla-b_allotype_' + index]
       const allele = allotype_res['hla-b_allotype']['name'];
