@@ -33,8 +33,8 @@
     (mouseover)="highlightAllotype(true)"
     (mouseout)="highlightAllotype(false)">
         <img src="/assets/img/loading-indicator.gif"
-            *ngIf="initiatedMatching && allotypes.length && allotypes[0].leader == ''"
+            *ngIf="initiatedMatching && allotypes.length && allotypes[0].hlaB != allotypes[0].submittedHlaB"
             width="10px">
         <!-- {{leaderMatch}} -->
-        {{allotypes.length && allotypes[0].leader}}
+        {{allotypes[0].hlaB == allotypes[0].submittedHlaB && allotypes.length ? allotypes[0].leader : ''}}
 </button>
