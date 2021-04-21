@@ -77,6 +77,7 @@ export class LeaderMatchingService {
         allo.exceptions = allotype_res['exceptions'];
         allo.unknowns = allotype_res['unknowns'];
         allo.known = allotype_res['known'];
+        allo.sharedIndex = null;
         if (allele == sharedAllotype){
           if (sharedAllotypePatient && !assigned){
             const patientGenotype = indices.map(i => subjectInfo['leaderPatient']['hla-b_genotype']['allotype_' + i].name);
@@ -85,8 +86,6 @@ export class LeaderMatchingService {
             }
             allo.sharedIndex = patientGenotype.indexOf(sharedAllotypePatient);
             assigned = true;
-          } else {
-            allo.sharedIndex = null;
           }
         }
       })
