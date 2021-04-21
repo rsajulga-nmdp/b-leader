@@ -17,6 +17,8 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
+@import '../../../../styles.scss';
+
 :host {
     width: 50px;
     height: 25px;
@@ -36,12 +38,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
     box-shadow: 2px 2px 2px #a6a6a6;
     background-color: white;
     // border: solid 1px black;
-    -webkit-transition: background-color 1s;
-    -moz-transition: background-color 1s;
+    -webkit-transition: background-color .5s;
+    -moz-transition: background-color .5s;
 }
 
 .leader-type.transparent {
     background-color: transparent;
+}
+
+.leader-type.highlighted {
+    // border: 1px inset red;
+    background-color: lightsalmon;
 }
 
 .leader-type.moved {

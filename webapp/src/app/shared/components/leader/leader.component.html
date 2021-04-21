@@ -21,7 +21,8 @@
      [ngClass] = "[leaderType, 
                    allotype.exceptions ? 'exceptions' : '',
                    transparent ? 'transparent' : '', 
-                   movedPatientGenotype ? 'moved' : '']"
+                   movedPatientGenotype ? 'moved' : '',
+                   allotype.highlighted ? 'highlighted' : '']"
      [ngbTooltip]="tooltipContent"
      container="body">
      <img src="/assets/img/loading-indicator.gif"

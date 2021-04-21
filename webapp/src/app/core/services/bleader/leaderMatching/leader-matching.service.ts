@@ -82,8 +82,6 @@ export class LeaderMatchingService {
             if (subjectInfo['flippedPatient']){
               patientGenotype.reverse();
             }
-            console.log(patientGenotype, sharedAllotypePatient);
-            console.log(subjectInfo);
             allo.sharedIndex = patientGenotype.indexOf(sharedAllotypePatient);
           }
         }

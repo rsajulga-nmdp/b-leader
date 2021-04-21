@@ -37,6 +37,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
     background-color: white;
 }
 
+.matchBlock:hover {
+    background-color: lightsalmon;
+}
+
 .T { border-color: $T_LEADER;}
 .M { border-color: $M_LEADER;}
 

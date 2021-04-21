@@ -25,13 +25,14 @@ export class Allotype {
     unknowns: string[];
     known: string[];
     initiatedCall: boolean;
-    sharedAllotype: boolean;
+    sharedIndex: number;
     highlighted: boolean;
     
     constructor(hlaBallotype: string) {
         this.hlaB = hlaBallotype;
         this.leader = '';
         this.initiatedCall = false;
+        this.highlighted = false;
     }
 
 }
