@@ -83,6 +83,9 @@ export class LeaderMatchingService {
               patientGenotype.reverse();
             }
             allo.sharedIndex = patientGenotype.indexOf(sharedAllotypePatient);
+            sharedAllotypePatient = null;
+          } else {
+            allo.sharedIndex = null;
           }
         }
       })
