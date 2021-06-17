@@ -68,7 +68,7 @@ export class SubjectsService {
                       "B*07:04+B*40:04",
                       "B*07:65+B*40:02",
                       "B*14:01+B*35:01",
-                      "B*40:04+B*07:XX"], donors);
+                      "B*07:02:01G+B*40:04"], donors);
     // patient[0].id = '259-1259-0';
     // donors[0].id = '925-3589-1';
     // donors[1].id = '256-2466-1';
